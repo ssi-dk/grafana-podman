@@ -38,7 +38,7 @@
 - name: ensure container state
   tags: container
   include_role:
-    name: ikke_t.podman_container_systemd
+    name: ssi.podman_container_systemd
 
 - name: Wait for grafana container to come up
   uri:

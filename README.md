@@ -38,7 +38,7 @@ Dependencies
 ------------
 
 roles:
-  - ikke_t.podman_container_systemd
+  - ssi.podman_container_systemd
 collections:
   - containers.podman
   - community.grafana
