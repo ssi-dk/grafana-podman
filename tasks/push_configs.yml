@@ -47,12 +47,12 @@
     url_password: "{{ grafana_admin_password }}"
     name: "{{ item.name }}"
     ds_type: "{{ item.type }}"
-    database: "{{ item.database }}"
-    org_id: "{{ item.org_id }}"
+    database: "{{ item.database | default(omit) }}"
+    org_id: "{{ item.org_id | default(omit) }}"
     ds_url: "{{ item.ds_url }}"
-    user: "{{ item.user }}"
-    password: "{{ item.password }}"
-    time_interval: "{{ item.time_interval }}"
+    user: "{{ item.user | default(omit) }}"
+    password: "{{ item.password | default(omit) }}"
+    time_interval: "{{ item.time_interval | default(omit) }}"
   no_log: true
   loop: "{{ grafana_datasources }}"
 
