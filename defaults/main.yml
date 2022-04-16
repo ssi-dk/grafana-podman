@@ -4,7 +4,8 @@
 
 grafana_domain: localhost
 grafana_root_url: 'http://%(domain)s/'
-grafana_public_url: 'https://example.com/grafana'
+# Default to the podman hosts default ipv4 address
+grafana_public_url: http://{{ ansible_facts['default_ipv4']['address'] }}:3000
 grafana_admin: admin
 grafana_admin_default_password: admin
 grafana_admin_password: "{{ grafana_admin_default_password }}"
@@ -40,9 +41,7 @@ container_run_args: >-
   -e "GF_INSTALL_PLUGINS=flant-statusmap-panel"
   -v "{{ exported_container_volumes_basedir }}/{{ container_dir_etc }}/custom.ini:/etc/grafana/grafana.ini:Z"
   -v "{{ exported_container_volumes_basedir }}/{{ container_dir_lib }}:/var/lib/grafana:Z"
-  --hostname="{{ container_fqdn }}"
+  --hostname "{{ container_fqdn }}"
   --label "io.containers.autoupdate=image"
 container_firewall_ports:
   - 3000/tcp
-
-  # --memory="{{ container_memory }}"
